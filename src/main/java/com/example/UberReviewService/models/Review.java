@@ -3,6 +3,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.Date;
 @Getter // it creates getter methods for all the fields
@@ -10,6 +11,7 @@ import java.util.Date;
 @Builder // it creates a builder pattern for the class
 @NoArgsConstructor // it creates a no-argument constructor
 @AllArgsConstructor // it creates a constructor with all the fields as arguments
+@EntityListeners(AuditingEntityListener.class) // it is used to listen to the entity lifecycle events
 
 @Entity // it is used to declare a class as an entity and map it to a database table
 @Table(name = "bookingreview") // it make changes in the database table name
