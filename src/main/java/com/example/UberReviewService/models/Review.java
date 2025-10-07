@@ -13,7 +13,7 @@ import java.util.Date;
 @AllArgsConstructor // it creates a constructor with all the fields as arguments
 
 @Entity // it is used to declare a class as an entity and map it to a database table
-@Table(name = "bookingreview") // it make changes in the database table name
+@Table(name = "booking_review") // it make changes in the database table name
 
 // @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 // not null constraint is not applicable on single table.

@@ -1,5 +1,6 @@
 package com.example.UberReviewService.models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,5 +10,10 @@ import lombok.Setter;
 @Setter
 
 public class PassengerReview extends Review{
+
+    @Column(nullable = false)
     private String passengerReviewContext;
+
+    @Column(nullable = false)
+    private String passengerRating;
 }
