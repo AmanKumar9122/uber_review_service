@@ -15,12 +15,14 @@ import java.util.Date;
 @Entity // it is used to declare a class as an entity and map it to a database table
 @Table(name = "bookingreview") // it make changes in the database table name
 
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 // not null constraint is not applicable on single table.
 // no need of joins while fetching data
 // one table for parent class and all child class attributes
 
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Review extends BaseModel {
+
     @Column(nullable = false)
     private String content;
 
