@@ -20,9 +20,8 @@ public class ReviewService implements CommandLineRunner {
     public void run(String... args) throws Exception {
         System.out.println("**********************");
         Review r = Review.builder().content("Amazing Ride!").rating(3.5).build(); // code to create plain object
-        System.out.println(r);
         reviewRepository.save(r); // this code executes sql query
-
+        System.out.println(r.getId());
         List<Review> reviews = reviewRepository.findAll();
         for(Review review: reviews){
             System.out.println(r.getContent());
