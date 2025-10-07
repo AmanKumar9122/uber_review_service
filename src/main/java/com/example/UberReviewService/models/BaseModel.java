@@ -15,7 +15,8 @@ import java.util.Date;
 
 public abstract class BaseModel {
     @Id //used for declare primary key
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    // @GeneratedValue(strategy = GenerationType.IDENTITY) // for joined and single table
+    @GeneratedValue(strategy = GenerationType.TABLE) // for table per class
     // Sequence - it creates a new table in the database and auto increments the id
     // Identity - it auto increments the id
     private Long id;
