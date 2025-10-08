@@ -1,6 +1,7 @@
 package com.example.UberReviewService.services;
 
 import com.example.UberReviewService.models.Booking;
+import com.example.UberReviewService.models.CustomDriver;
 import com.example.UberReviewService.models.Driver;
 import com.example.UberReviewService.models.Review;
 import com.example.UberReviewService.repositories.BookingRepository;
@@ -71,7 +72,8 @@ public class ReviewService implements CommandLineRunner {
 //        Optional<Driver> d = driverRepository.rawFindByIdAndLicenseNumber(1L, "DL121212" );
 //        System.out.println(d.get().getName());
 
-        Optional<Driver> d = driverRepository.hqlFindByIdAndLicence(1L, "DL121212" );
+        Optional<CustomDriver> d = driverRepository.hqlFindByIdAndLicence(1L, "DL121212" );
         System.out.println(d.get().getName());
+
     }
 }

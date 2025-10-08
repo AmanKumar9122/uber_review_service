@@ -1,6 +1,7 @@
 package com.example.UberReviewService.repositories;
 
 import com.example.UberReviewService.models.Booking;
+import com.example.UberReviewService.models.CustomDriver;
 import com.example.UberReviewService.models.Driver;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -23,6 +24,9 @@ public interface DriverRepository extends JpaRepository<Driver, Long> {
 
     // Here attribute names can be different from the column names in the database
     // Hibernate query language (HQL)
-    @Query("SELECT d FROM Driver d WHERE d.id = :id AND d.licenseNumber = :ln")
-    Optional<Driver> hqlFindByIdAndLicence(Long id, String ln);
+    // error is thrown at compile time
+    //@Query("SELECT d FROM Driver d WHERE d.id = :id AND d.licenseNumber = :ln")
+
+    @Query("SELECT new com.example.UberReviewService.models.CustomDriver(d.id, d.name) FROM Driver as d WHERE d.id = :id AND d.licenseNumber = :ln")
+    Optional<CustomDriver> hqlFindByIdAndLicence(Long id, String ln);
 }
