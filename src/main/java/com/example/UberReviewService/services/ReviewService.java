@@ -57,7 +57,7 @@ public class ReviewService implements CommandLineRunner {
 //        }
 
 
-        Optional<Driver> driver = driverRepository.findByIdAndLicenseNumber(1L,"DL121212");
+        Optional<Driver> driver = driverRepository.findById(1L);
         if(driver.isPresent()){
             System.out.println(driver.get().getName());
             List<Booking> bookings = bookingRepository.findAllByDriverId(1L);
@@ -65,5 +65,7 @@ public class ReviewService implements CommandLineRunner {
                 System.out.println(booking.getBookingStatus());
             }
         }
+
+        Optional<Booking> b = bookingRepository.findById(1L); // eager loading
     }
 }

@@ -24,7 +24,7 @@ public class Driver extends BaseModel{
     private String licenseNumber;
 
     // 1:n , Diver : Booking
-    @OneToMany(mappedBy = "driver") // mappedBy is used to specify the field that owns the relationship.
+    @OneToMany(mappedBy = "driver", fetch = FetchType.LAZY) // mappedBy is used to specify the field that owns the relationship.
     private List<Booking> bookings = new ArrayList<>();
 
 
