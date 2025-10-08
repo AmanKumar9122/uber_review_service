@@ -57,15 +57,21 @@ public class ReviewService implements CommandLineRunner {
 //        }
 
 
-        Optional<Driver> driver = driverRepository.findById(1L);
-        if(driver.isPresent()){
-            System.out.println(driver.get().getName());
-            List<Booking> bookings = bookingRepository.findAllByDriverId(1L);
-            for(Booking booking: bookings){
-                System.out.println(booking.getBookingStatus());
-            }
-        }
+//        Optional<Driver> driver = driverRepository.findById(1L);
+//        if(driver.isPresent()){
+//            System.out.println(driver.get().getName());
+//            List<Booking> bookings = bookingRepository.findAllByDriverId(1L);
+//            for(Booking booking: bookings){
+//                System.out.println(booking.getBookingStatus());
+//            }
+//        }
+//
+//        Optional<Booking> b = bookingRepository.findById(1L); // eager loading
 
-        Optional<Booking> b = bookingRepository.findById(1L); // eager loading
+//        Optional<Driver> d = driverRepository.rawFindByIdAndLicenseNumber(1L, "DL121212" );
+//        System.out.println(d.get().getName());
+
+        Optional<Driver> d = driverRepository.hqlFindByIdAndLicence(1L, "DL121212" );
+        System.out.println(d.get().getName());
     }
 }
