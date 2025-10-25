@@ -1,10 +1,9 @@
 package com.example.UberReviewService.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,17 +14,16 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-
-public class Driver extends BaseModel{
+public class Driver extends BaseModel {
 
     private String name;
 
     @Column(nullable = false, unique = true)
     private String licenseNumber;
 
-    // 1:n , Diver : Booking
-    @OneToMany(mappedBy = "driver", fetch = FetchType.LAZY) // mappedBy is used to specify the field that owns the relationship.
+    // 1:n, Driver : Booking
+    @OneToMany(mappedBy = "driver", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @Fetch(FetchMode.SUBSELECT) // avoids N+1 problem
+    @Builder.Default
     private List<Booking> bookings = new ArrayList<>();
-
-
 }

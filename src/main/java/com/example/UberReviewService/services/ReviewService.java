@@ -1,16 +1,16 @@
 package com.example.UberReviewService.services;
 
 import com.example.UberReviewService.models.Booking;
-import com.example.UberReviewService.models.CustomDriver;
 import com.example.UberReviewService.models.Driver;
-import com.example.UberReviewService.models.Review;
 import com.example.UberReviewService.repositories.BookingRepository;
 import com.example.UberReviewService.repositories.DriverRepository;
 import com.example.UberReviewService.repositories.ReviewRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +26,7 @@ public class ReviewService implements CommandLineRunner {
         this.driverRepository = driverRepository;
     }
 
+    @Transactional // to handle lazy loading exception
     @Override
     public void run(String... args) throws Exception {
 //        Review r = Review.builder()
@@ -72,8 +73,25 @@ public class ReviewService implements CommandLineRunner {
 //        Optional<Driver> d = driverRepository.rawFindByIdAndLicenseNumber(1L, "DL121212" );
 //        System.out.println(d.get().getName());
 
-        Optional<CustomDriver> d = driverRepository.hqlFindByIdAndLicence(1L, "DL121212" );
-        System.out.println(d.get().getName());
+//        Optional<CustomDriver> d = driverRepository.hqlFindByIdAndLicence(1L, "DL121212" );
+//        System.out.println(d.get().getName());
+
+        List<Long> driverIds = new ArrayList<>(Arrays.asList(1L,2L,3L,4L,5L,6L));
+        List<Driver> drivers = driverRepository.findAllByIdIn(driverIds);
+
+        // List<Booking> bookings = bookingRepository.findAllByDriverIn(drivers);
+
+        // what if we want to print bookings for each driver
+        // N + 1 problem
+        // N = number of drivers
+        // 1 = initial query to get all drivers
+        // total queries = N + 1
+        // solution : use @Fetch(FetchMode.SUBSELECT) in Driver entity class on bookings field
+        for ( Driver driver:drivers){
+            List<Booking> bookings = driver.getBookings();
+            bookings.forEach(booking -> System.out.println(booking.getId()));
+        }
+
 
     }
 }

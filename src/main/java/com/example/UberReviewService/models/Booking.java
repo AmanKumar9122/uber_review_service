@@ -1,6 +1,7 @@
 package com.example.UberReviewService.models;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Fetch;
 
 import java.util.Date;
 
