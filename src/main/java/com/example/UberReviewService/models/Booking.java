@@ -13,7 +13,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class Booking extends BaseModel {
 
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE},fetch = FetchType.LAZY) // cascade property automatically save which operation to be performed on the related entity.
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}) // cascade property automatically save which operation to be performed on the related entity.
     // it is used to define a one-to-one relationship between two entities.
     private Review review;
 
