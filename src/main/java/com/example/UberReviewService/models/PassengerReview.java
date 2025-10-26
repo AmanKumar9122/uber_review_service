@@ -12,7 +12,7 @@ import lombok.Setter;
 public class PassengerReview extends Review{
 
     @Column(nullable = false)
-    private String passengerReviewContext;
+    private String passengerReviewContent;
 
     @Column(nullable = false)
     private String passengerRating;
