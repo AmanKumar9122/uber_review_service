@@ -13,10 +13,6 @@ import java.util.Date;
 @AllArgsConstructor
 public class Booking extends BaseModel {
 
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}) // cascade property automatically save which operation to be performed on the related entity.
-    // it is used to define a one-to-one relationship between two entities.
-    private Review review;
-
     @Enumerated(value = EnumType.STRING) // it is used to specify that a persistent property or field should be persisted as an enumerated type.
     private BookingStatus bookingStatus;
 
